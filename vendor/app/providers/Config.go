@@ -2,7 +2,6 @@ package providers
 
 import (
 	"github.com/go-ini/ini"
-	"fmt"
 	"github.com/limingxinleo/di"
 )
 
@@ -17,7 +16,6 @@ func BuildConfigProvider(builder *di.Builder) {
 		Name: "config",
 		Scope: di.App,
 		Build: func(ctx di.Context) (interface{}, error) {
-			fmt.Println("NewConfig")
 			cfg, _ := ini.InsensitiveLoad("config.ini")
 			return &Config{Cfg:cfg}, nil
 		},

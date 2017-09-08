@@ -19,7 +19,6 @@ func BuildLoggerProvider(builder *di.Builder) {
 			dir := key.Value()
 			file := getLogFile(dir);
 			logrus.SetOutput(file)
-			fmt.Println("NewLogger")
 			return logrus.StandardLogger(), nil
 		},
 	})

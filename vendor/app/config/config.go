@@ -8,7 +8,7 @@ import (
 func GetTaskMap(di di.Context) map[string]controller.ControllerInterface {
 	TaskMap := make(map[string]controller.ControllerInterface)
 
-	TaskMap["Test"] = &controller.TestController{DI:di}
+	//TaskMap["Name"] = &controller.NameController{DI:di}
 
 	return TaskMap
 }
