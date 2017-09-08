@@ -3,6 +3,7 @@ package providers
 import (
 	"github.com/go-ini/ini"
 	"github.com/limingxinleo/di"
+	"fmt"
 )
 
 type Config struct {
@@ -17,6 +18,7 @@ func BuildConfigProvider(builder *di.Builder) {
 		Scope: di.App,
 		Build: func(ctx di.Context) (interface{}, error) {
 			cfg, _ := ini.InsensitiveLoad("config.ini")
+			fmt.Println("Build Config Service")
 			return &Config{Cfg:cfg}, nil
 		},
 	})

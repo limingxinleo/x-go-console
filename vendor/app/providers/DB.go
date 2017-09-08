@@ -27,7 +27,7 @@ func BuildDBProvider(builder *di.Builder) {
 			db := &DB{};
 			db.init(config)
 			db.Client, _ = sql.Open(db.adapter, db.getConn())
-
+			fmt.Println("Build DB Service")
 			return db, nil
 		},
 	})

@@ -19,6 +19,7 @@ func BuildLoggerProvider(builder *di.Builder) {
 			dir := key.Value()
 			file := getLogFile(dir);
 			logrus.SetOutput(file)
+			fmt.Println("Build Logger Service")
 			return logrus.StandardLogger(), nil
 		},
 	})
