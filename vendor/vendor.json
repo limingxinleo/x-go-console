@@ -3,22 +3,6 @@
 	"ignore": "test",
 	"package": [
 		{
-			"path": "appengine/cloudsql",
-			"revision": ""
-		},
-		{
-			"checksumSHA1": "GqkBIw2lUA6lv/jgh9WIyR0YdWY=",
-			"path": "github.com/facebookgo/inject",
-			"revision": "cc1aa653e50f6a9893bcaef89e673e5b24e1e97b",
-			"revisionTime": "2016-10-06T17:47:21Z"
-		},
-		{
-			"checksumSHA1": "i7FZ2nvv/aE37h5KD2b5hW+fHUo=",
-			"path": "github.com/facebookgo/structtag",
-			"revision": "217e25fb96916cc60332e399c9aa63f5c422ceed",
-			"revisionTime": "2015-02-14T07:43:06Z"
-		},
-		{
 			"checksumSHA1": "87LEfpY9cOk9CP7pWyIbmQ/6enU=",
 			"path": "github.com/go-ini/ini",
 			"revision": "c787282c39ac1fc618827141a1f762240def08a3",
@@ -41,15 +25,7 @@
 			"path": "github.com/sirupsen/logrus",
 			"revision": "89742aefa4b206dcf400792f3bd35b542998eb3b",
 			"revisionTime": "2017-08-22T13:27:46Z"
-		},
-		{
-			"path": "golang.org/x/crypto/ssh/terminal",
-			"revision": ""
-		},
-		{
-			"path": "golang.org/x/sys/unix",
-			"revision": ""
 		}
 	],
-	"rootPath": "demo/demo_container"
+	"rootPath": "console"
 }
