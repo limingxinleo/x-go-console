@@ -2,10 +2,12 @@ package providers
 
 import "fmt"
 import "database/sql"
-import _ "github.com/go-sql-driver/mysql"
+import (
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/limingxinleo/di"
+)
 
 type DB struct {
-	Config   *Config `inject:"config"`
 	Client   *sql.DB
 	adapter  string
 	host     string
@@ -15,34 +17,39 @@ type DB struct {
 	port     string
 }
 
-func NewDB() *DB {
-	fmt.Println("NewDB")
-	return &DB{}
+func BuildDBProvider(builder *di.Builder) {
+	// Define an object in the App scope.
+	builder.AddDefinition(di.Definition{
+		Name: "db",
+		Scope: di.App,
+		Build: func(ctx di.Context) (interface{}, error) {
+			config := ctx.Get("config").(*Config)
+			db := &DB{};
+			db.init(config)
+			db.Client, _ = sql.Open(db.adapter, db.getConn())
+			fmt.Println("NewDB")
+			return db, nil
+		},
+	})
 }
 
-func (this *DB)Init() {
-	this.init()
-	db, _ := sql.Open(this.adapter, this.getConn())
-	this.Client = db
-}
-
-func (this *DB) init() {
-	adapter, _ := this.Config.GetKey("database", "adapter")
+func (this *DB) init(config *Config) {
+	adapter, _ := config.GetKey("database", "adapter")
 	this.adapter = adapter.Value()
 
-	host, _ := this.Config.GetKey("database", "host")
+	host, _ := config.GetKey("database", "host")
 	this.host = host.Value()
 
-	username, _ := this.Config.GetKey("database", "username")
+	username, _ := config.GetKey("database", "username")
 	this.username = username.Value()
 
-	password, _ := this.Config.GetKey("database", "password")
+	password, _ := config.GetKey("database", "password")
 	this.password = password.Value()
 
-	dbname, _ := this.Config.GetKey("database", "dbname")
+	dbname, _ := config.GetKey("database", "dbname")
 	this.dbname = dbname.Value()
 
-	port, _ := this.Config.GetKey("database", "port")
+	port, _ := config.GetKey("database", "port")
 	this.port = port.Value()
 }
 

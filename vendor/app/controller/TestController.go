@@ -5,6 +5,7 @@ import (
 	"github.com/limingxinleo/di"
 	"app/providers"
 	"github.com/sirupsen/logrus"
+	"app/models"
 )
 
 type TestController struct {
@@ -18,6 +19,9 @@ func (this *TestController)Handle() (err error) {
 	fmt.Println(r)
 
 	log := this.DI.Get("logger").(*logrus.Logger)
-	log.Println("aaa")
+	log.Println("Hello World Logger")
+
+	user := models.User{}
+	fmt.Println(user.Find(1))
 	return nil
 }

@@ -1,6 +1,9 @@
 package models
 
-import "app/container"
+import (
+	"app/container"
+	"app/providers"
+)
 
 type User struct {
 	Id        int64
@@ -14,8 +17,8 @@ type User struct {
 }
 
 func (this *User)Find(id int64) *User {
-	di := container.GetInstance()
-	row := di.DB.Client.QueryRow("SELECT * FROM user WHERE id = ?", id)
+	db := container.DI.Get("db").(*providers.DB)
+	row := db.Client.QueryRow("SELECT * FROM user WHERE id = ?", id)
 	row.Scan(
 		&this.Id,
 		&this.Username,
